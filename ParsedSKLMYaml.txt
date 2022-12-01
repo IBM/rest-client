@@ -1,0 +1,1154 @@
+Path:/SKLM/rest/v1/ckms/login
+Type:post
+Summary:To log in to the IBM Security Guardium Key Lifecycle Manager server with valid user credentials.
+Attributes:Accept-Language,userid,password
+RequiredAttributes:userid,password
+AttributeLocs:header,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/logout
+Type:delete
+Summary:To stop the user session and log out of the IBM Security Guardium Key Lifecycle Manager server.
+Attributes:Accept-Language,userAuthId
+RequiredAttributes:userAuthId
+AttributeLocs:header,body
+--END--
+Path:/SKLM/rest/v1/backupInfo
+Type:get
+Summary:To list IBM Security Guardium Key Lifecycle Manager backup files in the specified directory.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/backups
+Type:post
+Summary:To run the backup task to create backup files.
+Attributes:Accept-Language,backupDirectory,description,databaseBackupDirectory,password,replica
+RequiredAttributes:
+AttributeLocs:header,body,body,body,body,body
+Type:get
+Summary:To list IBM Security Guardium Key Lifecycle Manager backup files in the specified directory.
+Attributes:Accept-Language,backupDirectory
+RequiredAttributes:
+AttributeLocs:header,query
+--END--
+Path:/SKLM/rest/v1/ckms/backups/isrunning
+Type:get
+Summary:To determine whether the backup task is running.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/backups/need
+Type:get
+Summary:To determine the keys or certificates in a keystore that are not yet backed up.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/backups/progress
+Type:get
+Summary:To determine the current phase of a backup task that is running.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/backups/result
+Type:get
+Summary:To determine the success or failure of the most recent backup task.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/restore
+Type:post
+Summary:To restore from an existing backup file.
+Attributes:Accept-Language,backupFilePath,password
+RequiredAttributes:backupFilePath
+AttributeLocs:header,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/restore/isrunning
+Type:get
+Summary:To determine whether the restore task is running.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/restore/progress
+Type:get
+Summary:To determine the current phase of a restore task that is running.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/restore/result
+Type:get
+Summary:To determine the success or failure of a completed restore task.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/certificateAttributes
+Type:put
+Summary:To update certificate metadata that are Key Management Interoperability Protocol attributesin the database.
+Attributes:Accept-Language,attrName,uuid,operation,index,attrValue
+RequiredAttributes:attrName,uuid,operation
+AttributeLocs:header,body,body,body,body,body
+--END--
+Path:/SKLM/rest/v1/certificates
+Type:post
+Summary:To create a certificate and a public and private key pair.
+Attributes:Accept-Language,type,alias,cn,usage,algorithm,ou,o,country,validity
+RequiredAttributes:type,alias,cn,usage,algorithm,validity
+AttributeLocs:header,body,body,body,body,body,body,body,body,body
+Type:get
+Summary:To get list of all certificate in IBM Security Guardium Key Lifecycle Manager database.
+Attributes:Accept-Language,uuid,alias,attributes,usage,offset,count
+RequiredAttributes:
+AttributeLocs:header,query,query,query,query,query,query
+Type:put
+Summary:To update attributes or usage for a certificate.
+Attributes:Accept-Language,uuid,attributes,usage
+RequiredAttributes:uuid
+AttributeLocs:header,body,body,body
+--END--
+Path:/SKLM/rest/v1/certificates/bulkCertUpdate
+Type:put
+Summary:Use Bulk Certificate Update REST Service to update communication certificates for client devices that have the same WWNN (worldwide node name) value as in the new certificate.
+Attributes:Accept-Language,fileName
+RequiredAttributes:fileName
+AttributeLocs:header,body
+--END--
+Path:/SKLM/rest/v1/certificates/client
+Type:put
+Summary:Use Update Owner REST Service to update the owner of the KMIP objects to use the new client certificate.
+Attributes:Accept-Language,oldAlias,newAlias
+RequiredAttributes:oldAlias,newAlias
+AttributeLocs:header,body,body
+--END--
+Path:/SKLM/rest/v1/certificates/export
+Type:put
+Summary:To export a certificate file.
+Attributes:Accept-Language,uuid,fileName,format
+RequiredAttributes:uuid,fileName
+AttributeLocs:header,body,body,body
+--END--
+Path:/SKLM/rest/v1/certificates/import
+Type:post
+Summary:To import a certificate file.
+Attributes:Accept-Language,fileName,alias,usage,format,deviceRole
+RequiredAttributes:fileName,alias,usage
+AttributeLocs:header,body,body,body,body,body
+--END--
+Path:/SKLM/rest/v1/certificates/rollover
+Type:post
+Summary:To add a default certificate rollover for a specific date and device group.
+Attributes:Accept-Language,alias,certDefaultType,usage,effectiveDate
+RequiredAttributes:alias,certDefaultType,usage,effectiveDate
+AttributeLocs:header,body,body,body,body
+Type:get
+Summary:To list certificate rollovers in a rollover list for a specified device group.
+Attributes:Accept-Language,usage,uuid,name
+RequiredAttributes:
+AttributeLocs:header,query,query,query
+--END--
+Path:/SKLM/rest/v1/certificates/rollover/{uuid}
+Type:delete
+Summary:To remove a certificate rollover that is specified in a rollover list.
+Attributes:Accept-Language,uuid
+RequiredAttributes:uuid
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/certificates/{alias}
+Type:delete
+Summary:To delete a certificate from the IBM Security Guardium Key Lifecycle Manager server.
+Attributes:Accept-Language,alias
+RequiredAttributes:alias
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/clients
+Type:post
+Summary:To create a client that is registered with IBM Security Guardium Key Lifecycle Manager server.
+Attributes:Accept-Language,clientName
+RequiredAttributes:clientName
+AttributeLocs:header,body
+Type:get
+Summary:Use List All Clients REST Service to retrieve the list of clients from the database.
+Attributes:Accept-Language,isSKLMUI
+RequiredAttributes:
+AttributeLocs:header,query
+--END--
+Path:/SKLM/rest/v1/clients/groups
+Type:post
+Summary:Use Create Client Group Rest Service to create a client group that is registered with the IBM Security Key Lifecycle manager.
+Attributes:Accept-Language,groupName
+RequiredAttributes:groupName
+AttributeLocs:header,body
+Type:get
+Summary:Use List All Client Group Details Rest Service to get details of all the client groups.
+Attributes:Accept-Language,isSKLMUI
+RequiredAttributes:
+AttributeLocs:header,query
+--END--
+Path:/SKLM/rest/v1/clients/groups/clientList
+Type:get
+Summary:Use List Clients Not in Any Client Group Rest Service to list all the clients which are not assigned to any client group.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/clients/groups/updateGroupName
+Type:put
+Summary:Use Update Client Group Name Rest Service to update the name of an existing client group.
+Attributes:Accept-Language,clientGroupName,newClientGroupName
+RequiredAttributes:clientGroupName,newClientGroupName
+AttributeLocs:header,body,body
+--END--
+Path:/SKLM/rest/v1/clients/groups/{groupName}
+Type:get
+Summary:Use List Client Group Details Rest Service to get details of a specified client group.
+Attributes:Accept-Language,groupName
+RequiredAttributes:groupName
+AttributeLocs:header,path
+Type:delete
+Summary:Use Delete Client Group Rest Service to delete a client group. It does not delete the clients in the group or its objects.
+Attributes:Accept-Language,groupName
+RequiredAttributes:groupName
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/clients/groups/{groupName}/assignClients
+Type:put
+Summary:Use Assign Client To Group Rest Service to assign clients to a client group who can access each others objects.
+Attributes:Accept-Language,groupName,clients
+RequiredAttributes:groupName,clients
+AttributeLocs:header,path,body
+--END--
+Path:/SKLM/rest/v1/clients/groups/{groupName}/removeClients
+Type:put
+Summary:Use Remove Clients From Group Rest Service to remove the clients from the client group.
+Attributes:Accept-Language,groupName,clients
+RequiredAttributes:groupName,clients
+AttributeLocs:header,path,body
+--END--
+Path:/SKLM/rest/v1/clients/updateClientName
+Type:put
+Summary:To update the name of a client.
+Attributes:Accept-Language,clientName,newClientName
+RequiredAttributes:clientName,newClientName
+AttributeLocs:header,body,body
+--END--
+Path:/SKLM/rest/v1/clients/{clientName}
+Type:get
+Summary:To retrieve details of a specific client from the database.
+Attributes:Accept-Language,clientName
+RequiredAttributes:clientName
+AttributeLocs:header,path
+Type:delete
+Summary:To delete a client and the cryptographic objects that are associated with it.
+Attributes:Accept-Language,clientName
+RequiredAttributes:clientName
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/clients/{clientName}/assignCertificate
+Type:put
+Summary:To associate a certificate with a client.
+Attributes:Accept-Language,clientName,certUseOption,certAlias,certUUID,importPath
+RequiredAttributes:clientName,certUseOption,certAlias
+AttributeLocs:header,path,body,body,body,body
+--END--
+Path:/SKLM/rest/v1/clients/{clientName}/assignUsers
+Type:put
+Summary:To assign users to a client who can access the managed objects of the client.
+Attributes:Accept-Language,clientName,users
+RequiredAttributes:clientName,users
+AttributeLocs:header,path,body
+--END--
+Path:/SKLM/rest/v1/clients/{clientName}/listObjectsToClient
+Type:get
+Summary:To retrieve details of all the managed objects that are associated with a client.
+Attributes:Accept-Language,clientName
+RequiredAttributes:clientName
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/clients/{clientName}/removeUsers
+Type:put
+Summary:To remove users that are assigned to a client.
+Attributes:Accept-Language,clientName,users
+RequiredAttributes:clientName,users
+AttributeLocs:header,path,body
+--END--
+Path:/SKLM/rest/v1/ckms/conflictResolution/changeCertificateAlias
+Type:post
+Summary:To change the alias of a certificate present in the IBM Security Guardium Key Lifecycle Manager instance.
+Attributes:Accept-Language,oldAlias,newAlias
+RequiredAttributes:oldAlias,newAlias
+AttributeLocs:header,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/conflictResolution/changeName
+Type:post
+Summary:To change the serial number of a storage device.
+Attributes:Accept-Language,type,oldName,newName
+RequiredAttributes:type,oldName,newName
+AttributeLocs:header,body,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/conflictResolution/getChangeHistory
+Type:get
+Summary:To get information about the historical changes that are done to different managed objects such as key alias, certificate alias, device serial number, and UUID in the IBM Security Guardium Key Lifecycle Manager instance.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/conflictResolution/renewKeyAlias
+Type:post
+Summary:To change the alias of a key present in the IBM Security Guardium Key Lifecycle Manager instance.
+Attributes:Accept-Language,oldAlias,newAliasPrefix
+RequiredAttributes:oldAlias,newAliasPrefix
+AttributeLocs:header,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/conflictResolution/renewUUID
+Type:post
+Summary:To change the uuid of a object.
+Attributes:Accept-Language,type,oldUUID
+RequiredAttributes:type,oldUUID
+AttributeLocs:header,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/deviceGroupsExport
+Type:post
+Summary:To create an encrypted archive that contains device group data for exporting to another instance of IBM Security Guardium Key Lifecycle Manager.
+Attributes:Accept-Language,name,password,description,exportDirectory
+RequiredAttributes:name,password
+AttributeLocs:header,body,body,body,body
+Type:get
+Summary:To list exported files in a directory.
+Attributes:Accept-Language,exportDirectory
+RequiredAttributes:
+AttributeLocs:header,query
+--END--
+Path:/SKLM/rest/v1/ckms/deviceGroupsExport/deleteExportFile
+Type:delete
+Summary:To delete an export file from the IBM Security Guardium Key Lifecycle Manager.
+Attributes:Accept-Language,exportFilePath
+RequiredAttributes:
+AttributeLocs:header,query
+--END--
+Path:/SKLM/rest/v1/ckms/deviceGroupsExport/viewSummaryOfExportFileInADirectory
+Type:post
+Summary:To view the summary of a device group export file.
+Attributes:Accept-Language,exportFilePath,password
+RequiredAttributes:exportFilePath,password
+AttributeLocs:header,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/deviceGroupsImport
+Type:post
+Summary:To import device group data into IBM Security Guardium Key Lifecycle Manager server from the export file.
+Attributes:Accept-Language,importFilePath,password,ignoreDeviceGroupConflict
+RequiredAttributes:importFilePath,password
+AttributeLocs:header,body,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/deviceGroupsImport/importConflicts
+Type:post
+Summary:To lists the data conflicts, if any, when the device group data is imported from an export file into an IBM Security Guardium Key Lifecycle Manager instance.
+Attributes:Accept-Language,importFilePath,password
+RequiredAttributes:importFilePath,password
+AttributeLocs:header,body,body
+--END--
+Path:/SKLM/rest/v1/deviceGroupAttributes
+Type:get
+Summary:To list all of the attributes of a device group, such as LTO.
+Attributes:Accept-Language,name
+RequiredAttributes:
+AttributeLocs:header,query
+Type:delete
+Summary:To delete an attribute of a device group, such as myLTO.
+Attributes:Accept-Language,name,attribute
+RequiredAttributes:name,attribute
+AttributeLocs:header,body,body
+Type:put
+Summary:To update the attributes of a device group, such as myLTO.
+Attributes:Accept-Language,name,attributes
+RequiredAttributes:name,attributes
+AttributeLocs:header,body,body
+--END--
+Path:/SKLM/rest/v1/deviceGroups
+Type:get
+Summary:To obtain a list of device groups within a device family, such as LTO
+Attributes:Accept-Language,name,deviceFamily,offset,count
+RequiredAttributes:
+AttributeLocs:header,query,query,query,query
+--END--
+Path:/SKLM/rest/v1/deviceGroups/base
+Type:get
+Summary:To list all of the device group families that IBM Security Guardium Key Lifecycle Manager provides, such as LTO and 3592.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/deviceGroups/{name}
+Type:post
+Summary:To create a device group, such as myLTO.
+Attributes:Accept-Language,name,deviceFamily,device.enableMachineAffinity,enableKMIPDelete,longName,shortName
+RequiredAttributes:name,deviceFamily
+AttributeLocs:header,path,body,body,body,body,body
+Type:delete
+Summary:To delete an empty customized device group such as myLTO.
+Attributes:Accept-Language,name
+RequiredAttributes:name
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/deviceTypes
+Type:get
+Summary:To obtain a list of device groups for the device type you specified.
+Attributes:Accept-Language,deviceListType
+RequiredAttributes:
+AttributeLocs:header,query
+--END--
+Path:/SKLM/rest/v1/deviceTypes/{deviceListType}
+Type:get
+Summary:To obtain a list of device groups for the device type you specified.
+Attributes:Accept-Language,deviceListType
+RequiredAttributes:deviceListType
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/devices
+Type:post
+Summary:To add a device to the IBM Security Guardium Key Lifecycle Manager database. <br>If the device is a DS5000 storage server, this service can optionally create a system-to-device relationship.
+Attributes:Accept-Language,serialNumber,type,attributes
+RequiredAttributes:serialNumber,type
+AttributeLocs:header,body,body,body
+Type:get
+Summary:To list information about all devices of a specific device group, or a device in the IBM Security Guardium Key Lifecycle Manager.
+Attributes:Accept-Language,uuid,type,offset,count
+RequiredAttributes:
+AttributeLocs:header,query,query,query,query
+Type:put
+Summary:To update the attributes of a device in the IBM Security Guardium Key Lifecycle Manager database.
+Attributes:Accept-Language,uuid,type,attributes
+RequiredAttributes:uuid
+AttributeLocs:header,body,body,body
+--END--
+Path:/SKLM/rest/v1/devices/{uuid}
+Type:delete
+Summary:To remove information that identifies a device from the IBM Security Guardium Key Lifecycle Manager database.
+Attributes:Accept-Language,uuid
+RequiredAttributes:uuid
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/machines
+Type:post
+Summary:To create a machine identity in the IBM Security Guardium Key Lifecycle Manager database.
+Attributes:Accept-Language,machineID,machineText
+RequiredAttributes:machineID
+AttributeLocs:header,body,body
+Type:get
+Summary:To list known machine identities for a DS5000 device group.
+Attributes:Accept-Language,offset,count
+RequiredAttributes:
+AttributeLocs:header,query,query
+Type:delete
+Summary:To remove a machine identity from the IBM Security Guardium Key Lifecycle Manager database.
+Attributes:Accept-Language,machineUUID,machineID,machineText
+RequiredAttributes:
+AttributeLocs:header,body,body,body
+Type:put
+Summary:To update the machine text of a machine in the IBM Security Guardium Key Lifecycle Manager database
+Attributes:Accept-Language,machineUUID,machineText
+RequiredAttributes:machineUUID,machineText
+AttributeLocs:header,body,body
+--END--
+Path:/SKLM/rest/v1/machines/device
+Type:post
+Summary:To add the association of a device to an existing machine identifier in the IBM Security Guardium Key Lifecycle Manager database.
+Attributes:Accept-Language,deviceUUID,machineID,machineText
+RequiredAttributes:deviceUUID
+AttributeLocs:header,body,body,body
+Type:get
+Summary:To list all the devices that are associated with a specific machine ID or machine text.
+Attributes:Accept-Language,machineID,machineText,offset,count
+RequiredAttributes:
+AttributeLocs:header,query,query,query,query
+Type:delete
+Summary:To remove the association of a device to an existing machine identifier in the IBM Security Guardium Key Lifecycle Manager database.
+Attributes:Accept-Language,deviceUUID,machineID,machineText
+RequiredAttributes:deviceUUID
+AttributeLocs:header,body,body,body
+--END--
+Path:/SKLM/rest/v1/filetransfer/download/logs
+Type:get
+Summary:To download log files from the IBM Security Guardium Key Lifecycle Manager server.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/filetransfer/download/objectfiles
+Type:get
+Summary:To download files from IBM Security Guardium Key Lifecycle Manager Data Folder.
+Attributes:Accept-Language,fileName
+RequiredAttributes:
+AttributeLocs:header,query
+--END--
+Path:/SKLM/rest/v1/filetransfer/upload/license
+Type:post
+Summary:To upload the license files.
+Attributes:Accept-Language,fileToUpload
+RequiredAttributes:fileToUpload
+AttributeLocs:header,body
+--END--
+Path:/SKLM/rest/v1/filetransfer/upload/objectfiles
+Type:post
+Summary:To upload files to IBM Security Guardium Key Lifecycle Manager Data Folder.
+Attributes:Accept-Language,fileToUpload,destination
+RequiredAttributes:fileToUpload
+AttributeLocs:header,body,body
+--END--
+Path:/SKLM/rest/v1/keygroupentry
+Type:post
+Summary:To add keys to an existing key group.
+Attributes:Accept-Language,entry,name
+RequiredAttributes:entry,name
+AttributeLocs:header,body,body
+Type:delete
+Summary:To delete objects from a group.
+Attributes:Accept-Language,entry,name
+RequiredAttributes:entry,name
+AttributeLocs:header,body,body
+--END--
+Path:/SKLM/rest/v1/keygroups
+Type:get
+Summary:To list the objects in a group of keys, or the groups of a specific type.
+Attributes:Accept-Language,usage,name,offset,count
+RequiredAttributes:
+AttributeLocs:header,query,query,query,query
+Type:put
+Summary:To update group metadata in the database for moving all the keys in a key group from one device group to another, within the same device group family.
+Attributes:Accept-Language,usage,uuid,name
+RequiredAttributes:usage
+AttributeLocs:header,body,body,body
+--END--
+Path:/SKLM/rest/v1/keygroups/rollover
+Type:post
+Summary:To add a default key group rollover to serve keys to a device group on a specific date.
+Attributes:Accept-Language,usage,keyGroupName,effectiveDate
+RequiredAttributes:usage,keyGroupName,effectiveDate
+AttributeLocs:header,body,body,body
+Type:get
+Summary:To list key group rollovers in a rollover list
+Attributes:Accept-Language,usage,uuid,keyGroupName
+RequiredAttributes:
+AttributeLocs:header,query,query,query
+--END--
+Path:/SKLM/rest/v1/keygroups/rollover/{uuid}
+Type:delete
+Summary:To remove a key group rollover that is specified in a rollover list.
+Attributes:Accept-Language,uuid
+RequiredAttributes:uuid
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/keygroups/{group}
+Type:post
+Summary:To create a key group to which you can add keys.
+Attributes:Accept-Language,group,usage
+RequiredAttributes:group,usage
+AttributeLocs:header,path,body
+Type:delete
+Summary:To delete a key group.
+Attributes:Accept-Language,group
+RequiredAttributes:group
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/keyAttributes
+Type:put
+Summary:To update key metadata that are Key Management Interoperability Protocol attributes in the database.
+Attributes:Accept-Language,attrName,uuid,operation,index,attrValue
+RequiredAttributes:attrName,uuid,operation
+AttributeLocs:header,body,body,body,body,body
+--END--
+Path:/SKLM/rest/v1/keys
+Type:post
+Summary:To create one or more symmetric keys to encrypt and decrypt data.
+Attributes:Accept-Language,numOfKeys,alias,aliasRange,keyGroupUuid,usage
+RequiredAttributes:usage
+AttributeLocs:header,body,body,body,body,body
+Type:get
+Summary:To list a key or keys in the keystore that is based on specified criteria, such as an active state.
+Attributes:Accept-Language,alias,uuid,usage,attributes,offset,count
+RequiredAttributes:
+AttributeLocs:header,query,query,query,query,query,query
+Type:put
+Summary:To update key metadata in the database.
+Attributes:Accept-Language,uuid,usage,attributes
+RequiredAttributes:uuid
+AttributeLocs:header,body,body,body
+--END--
+Path:/SKLM/rest/v1/keys/export
+Type:put
+Summary:To export secret keys or public/private key pairs.
+Attributes:Accept-Language,fileName,type,alias,aliases,aliasRange,keyAlias,password
+RequiredAttributes:fileName,type
+AttributeLocs:header,body,body,body,body,body,body,body
+--END--
+Path:/SKLM/rest/v1/keys/import
+Type:post
+Summary:To import secret keys or public/private key pairs.
+Attributes:Accept-Language,type,fileName,usage,password,keyAlias,alias,newAlias
+RequiredAttributes:type,fileName,usage
+AttributeLocs:header,body,body,body,body,body,body,body
+--END--
+Path:/SKLM/rest/v1/keys/{alias}
+Type:delete
+Summary:To delete a key entry from the keystore.
+Attributes:Accept-Language,alias
+RequiredAttributes:alias
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/secretData
+Type:get
+Summary:To list KMIP Secret Data.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/secretData/{uuid}
+Type:delete
+Summary:To delete KMIP Secret Data.
+Attributes:Accept-Language,uuid
+RequiredAttributes:uuid
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/kmipTemplate
+Type:get
+Summary:To obtain the list of KMIP templates that IBM Security Guardium Key Lifecycle Manager provides.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/kmipTemplate/{uuid}
+Type:delete
+Summary:To delete a KMIP template.
+Attributes:Accept-Language,uuid
+RequiredAttributes:uuid
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/ckms/deviceGroupMasterKey
+Type:get
+Summary:To obtain details of the master key status for all the device groups.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/deviceGroupMasterKey/rotate
+Type:post
+Summary:To refresh the master key for all device groups.
+Attributes:Accept-Language,force
+RequiredAttributes:
+AttributeLocs:header,body
+--END--
+Path:/SKLM/rest/v1/ckms/deviceGroupMasterKey/{deviceGroupName}
+Type:post
+Summary:To enable or disable the master key for a device group.
+Attributes:Accept-Language,deviceGroupName,enable,rotationPeriod,algorithm,keySize
+RequiredAttributes:deviceGroupName,enable
+AttributeLocs:header,path,body,body,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/deviceGroupMasterKey/{devicegroupName}
+Type:get
+Summary:To obtain details of the master key status for a specific device group.
+Attributes:Accept-Language,devicegroupName
+RequiredAttributes:devicegroupName
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/ckms/deviceGroupMasterKey/{devicegroupName}/rotate
+Type:post
+Summary:To refresh the master key for a specific device group.
+Attributes:Accept-Language,devicegroupName,force
+RequiredAttributes:devicegroupName
+AttributeLocs:header,path,body
+--END--
+Path:/SKLM/rest/v1/ckms/masterKey
+Type:post
+Summary:To refresh/move the master key.
+Attributes:Accept-Language,masterKeySize,source,destination
+RequiredAttributes:masterKeySize
+AttributeLocs:header,body,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/masterKey/transmitter
+Type:post
+Summary:To transfer the master key from primary IBM Security Guardium Key Lifecycle Manager server to standby server or nodes in a Multi-Master cluster.
+Attributes:Accept-Language,ipHostname,httpPort,sklmUsername,sklmPassword
+RequiredAttributes:ipHostname,httpPort,sklmUsername,sklmPassword
+AttributeLocs:header,body,body,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/config/nodes/addNodes
+Type:post
+Summary:To add a server in the Multi-Master cluster.
+Attributes:Accept-Language,clusterName,primaryHadrPort,type,httpPort,ipHostname,sklmUsername,sklmPassword,wasUsername,wasPassword,standbyPriorityIndex,autoaccept
+RequiredAttributes:clusterName,primaryHadrPort,type,httpPort,ipHostname,sklmUsername,sklmPassword,wasUsername,wasPassword,standbyPriorityIndex,autoaccept
+AttributeLocs:header,body,body,body,body,body,body,body,body,body,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/config/nodes/getClusterName
+Type:get
+Summary:To get the cluster name
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/config/nodes/isNodeIsolatedFromCluster
+Type:get
+Summary:To know whether the non-HADR master server is isolated from the Multi-Master cluster.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/config/nodes/joinBackTheCluster
+Type:get
+Summary:To rejoin the isolated master, which is configured in read-write mode, back to the Multi-Master cluster.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/config/nodes/reconfig
+Type:post
+Summary:Use Reconfigure Multi-Master Cluster REST Service to reconfigure the master servers of the Multi-Master cluster after restoring the backup of a standalone server to the primary master server. You must run this rest service on the primary master server.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/config/nodes/regenerateClusterName
+Type:post
+Summary:To regenerate the cluster name
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/config/nodes/removeNode
+Type:post
+Summary:To remove a node from the Multi-Master cluster.
+Attributes:Accept-Language,clusterName,type,ipHostname
+RequiredAttributes:clusterName,type,ipHostname
+AttributeLocs:header,body,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/config/nodes/restartCluster
+Type:post
+Summary:To restart the Multi-Master cluster.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/config/nodes/setupAsReadWriteMaster
+Type:get
+Summary:To configure master server in read-write mode when the master is isolated from the Multi-Master cluster due to connectivity or network issues.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/config/nodes/stopCluster
+Type:post
+Summary:To stop the the Multi-Master cluster.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/config/nodes/takeoverAsPrimary
+Type:post
+Summary:To promote a standby master to primary master server.
+Attributes:Accept-Language,clusterName,ipHostname
+RequiredAttributes:clusterName,ipHostname
+AttributeLocs:header,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/config/nodes/updateMaster
+Type:post
+Summary:Use Modify Master REST Service to modify master server details to meet your requirements.
+Attributes:Accept-Language,ipHostname,httpPort,sklmUsername,sklmPassword,wasUsername,wasPassword
+RequiredAttributes:ipHostname,httpPort,sklmUsername,sklmPassword,wasUsername,wasPassword
+AttributeLocs:header,body,body,body,body,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/multimaster/agent//expiringCertificates
+Type:get
+Summary:Use List Expiring/Expired Agent Certificates Rest Service to get a list of agent certificates that have expired or will expire soon.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/multimaster/agent//state
+Type:get
+Summary:Use Get Agent Status Rest Service to get the status of the agent.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/multimaster/agentstatus
+Type:get
+Summary:To obtain detailed status information for the agent service that is installed in a IBM Security Guardium Key Lifecycle Manager master server of the Multi-Master cluster.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/multimaster/startagent
+Type:post
+Summary:To start the agent service in a master server of the IBM Security Guardium Key Lifecycle Manager server Multi-Master cluster.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/multimaster/stopagent
+Type:post
+Summary:To stop the agent service in a master server of the IBM Security Guardium Key Lifecycle Manager server Multi-Master cluster.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/nodes
+Type:get
+Summary:To retrieve configuration details of all masters in the Multi-Master cluster.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/nodes/allDBNodeStatus
+Type:get
+Summary:To obtain the status of cluster configuration and ports on all master servers in the the Multi-Master cluster.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/nodes/allNodeStatus
+Type:get
+Summary:To obtain status information that indicates whether all the communication ports in the master servers are reachable.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/nodes/checkPreRequisite
+Type:post
+Summary:To verify whether the master server that you want to add to the cluster meets all requirements and conditions that are defined for Multi-Master configuration.
+Attributes:Accept-Language,ipHostname,clusterName,sklmUsername,sklmPassword,wasUsername,wasPassword,sklmUIPort,autoaccept,hadrType,standbyHadrPort,standbyPriorityIndex
+RequiredAttributes:ipHostname,clusterName,sklmUsername,sklmPassword,wasUsername,wasPassword,sklmUIPort,autoaccept,hadrType
+AttributeLocs:header,body,body,body,body,body,body,body,body,body,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/nodes/getClusterHADRStatus
+Type:get
+Summary:To obtain the status of the Db2 high availability disaster recovery (HADR) configuration in the Multi-Master cluster.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/nodes/getThisNodeDetails
+Type:get
+Summary:To retrieve configuration details of a specific master in the Multi-Master cluster.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/objects
+Type:get
+Summary:To retrieve details of all the managed objects that are associated with a client.
+Attributes:Accept-Language,clientName,objectType
+RequiredAttributes:
+AttributeLocs:header,query,query
+--END--
+Path:/SKLM/rest/v1/objects/certificate
+Type:post
+Summary:To register a certificate with a client.
+Attributes:Accept-Language,clientName,prefixName,algorithm,bitLength,certCryptoUsageMask,publicKeyCryptoUsageMask,certFormat,certMaterial,publicKeyFormat,publicKeyMaterial
+RequiredAttributes:clientName,prefixName
+AttributeLocs:header,body,body,body,body,body,body,body,body,body,body
+--END--
+Path:/SKLM/rest/v1/objects/keypair
+Type:post
+Summary:To create or register a public-private key pair and associate it with a client.
+Attributes:Accept-Language,clientName,prefixName,numberOfObjects,publicKeyCryptoUsageMask,privateKeyCryptoUsageMask,algorithm,bitLength,privateKeyFormat,privateKeyMaterial,publicKeyFormat,publicKeyMaterial
+RequiredAttributes:clientName,prefixName,privateKeyMaterial
+AttributeLocs:header,body,body,body,body,body,body,body,body,body,body,body
+--END--
+Path:/SKLM/rest/v1/objects/opaque
+Type:post
+Summary:To register an opaque object with a client.
+Attributes:Accept-Language,clientName,keyMaterial
+RequiredAttributes:clientName,keyMaterial
+AttributeLocs:header,body,body
+--END--
+Path:/SKLM/rest/v1/objects/secret
+Type:post
+Summary:To create or register one ore more secret data objects and associate them with a client.
+Attributes:Accept-Language,clientName,prefixName,cryptoUsageMask,bitLength,numberOfObjects,keyFormat,keyMaterial
+RequiredAttributes:clientName,prefixName
+AttributeLocs:header,body,body,body,body,body,body,body
+--END--
+Path:/SKLM/rest/v1/objects/symmetrickey
+Type:post
+Summary:To create or register one or more symmetric keys and associate them with a client.
+Attributes:Accept-Language,clientName,prefixName,numberOfObjects,algorithm,bitLength,cryptoUsageMask,keyFormat,keyMaterial
+RequiredAttributes:clientName,prefixName
+AttributeLocs:header,body,body,body,body,body,body,body,body
+--END--
+Path:/SKLM/rest/v1/objects/{objectId}
+Type:get
+Summary:To retrieve details about a specific managed object.
+Attributes:Accept-Language,objectId
+RequiredAttributes:objectId
+AttributeLocs:header,path
+Type:delete
+Summary:To delete a specific managed object.
+Attributes:Accept-Language,objectId
+RequiredAttributes:objectId
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/pendingClientCertificates
+Type:post
+Summary:To accept the client communication certificate that was pushed to the IBM Security Guardium Key Lifecycle Manager server from a client device for secure communication.
+Attributes:Accept-Language,uuid,alias,deviceRole,deviceGroup
+RequiredAttributes:uuid,alias
+AttributeLocs:header,body,body,body,body
+Type:get
+Summary:To list pending certificates that are pushed to the server from a client device for secure communication with IBM Security Guardium Key Lifecycle Manager.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/pendingClientCertificates/{uuid}
+Type:delete
+Summary:To reject the certificate that is pushed to the server from a client device.
+Attributes:Accept-Language,uuid
+RequiredAttributes:uuid
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/pendingDevices
+Type:post
+Summary:To accept a device from a pending list.
+Attributes:Accept-Language,deviceUUID,usage
+RequiredAttributes:deviceUUID
+AttributeLocs:header,body,body
+Type:get
+Summary:To obtain a list of all the pending devices.
+Attributes:Accept-Language,usage
+RequiredAttributes:
+AttributeLocs:header,query
+--END--
+Path:/SKLM/rest/v1/pendingDevices/{uuid}
+Type:delete
+Summary:To reject a device request to communicate with IBM Security Guardium Key Lifecycle Manager.
+Attributes:Accept-Language,uuid
+RequiredAttributes:uuid
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/pendingMachineDevices
+Type:get
+Summary:To obtain a list of all the pending devices.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/pendingMachineDevices/accept
+Type:post
+Summary:To accept a pending machine-to-device relationship request.
+Attributes:Accept-Language,deviceUUID,machineID,machineText
+RequiredAttributes:deviceUUID
+AttributeLocs:header,body,body,body
+--END--
+Path:/SKLM/rest/v1/pendingMachineDevices/reject
+Type:post
+Summary:To reject a machine-to-device relationship request.
+Attributes:Accept-Language,deviceUUID,machineUUID
+RequiredAttributes:deviceUUID,machineUUID
+AttributeLocs:header,body,body
+--END--
+Path:/SKLM/rest/v1/replicate/now
+Type:post
+Summary:To immediately run the IBM Security Guardium Key Lifecycle Manager replication task, and to force a backup to be sent to the configured clones.
+Attributes:Accept-Language,replicationTargetFromConfig,hostname,port
+RequiredAttributes:
+AttributeLocs:header,body,body,body
+--END--
+Path:/SKLM/rest/v1/replicate/start
+Type:post
+Summary:To start the replication server for replicating the current IBM Security Guardium Key Lifecycle Manager active files on clone servers based on a configured schedule.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/replicate/status
+Type:get
+Summary:To obtain information about the IBM Security Guardium Key Lifecycle Manager replication task, such as operational status and replication schedules.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/replicate/stop
+Type:post
+Summary:To stop the replication server so that the current IBM Security Guardium Key Lifecycle Manager active files and data are not replicated to the clone servers.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/replicationConfigProperties
+Type:get
+Summary:To retrieve one or more comma seperated property values from Replication Config file.
+Attributes:Accept-Language,properties,properties
+RequiredAttributes:
+AttributeLocs:header,query,query
+Type:delete
+Summary:To delete one or more properties from the ReplicationSKLMConfig.properties configuration file to control the replication operation.
+Attributes:Accept-Language,propertyName
+RequiredAttributes:propertyName
+AttributeLocs:header,body
+Type:put
+Summary:To update one or more properties in the ReplicationSKLMConfig.properties configuration file to control the replication operation.
+Attributes:Accept-Language,backup.ClientIP1
+RequiredAttributes:backup.ClientIP1
+AttributeLocs:header,body
+--END--
+Path:/SKLM/rest/v1/replicationConfigProperties/{propertyName}
+Type:get
+Summary:To get single property value from the Replication Config file.
+Attributes:Accept-Language,propertyName
+RequiredAttributes:propertyName
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/archive/servedData
+Type:post
+Summary:To archive Dev-Audit table data.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/servedData
+Type:get
+Summary:To get served data list.
+Attributes:Accept-Language,attributeName,attributeValue,volser,usage,dateAfter,dateBefore,kmipClientCertUUID,serialNumber,offset,count
+RequiredAttributes:
+AttributeLocs:header,query,query,query,query,query,query,query,query,query,query
+--END--
+Path:/SKLM/rest/v1/configProperties
+Type:get
+Summary:To retrieve one or more properties from the SKLMConfig.properties configuration file.
+Attributes:Accept-Language,properties,properties,type
+RequiredAttributes:
+AttributeLocs:header,query,query,query
+Type:delete
+Summary:To delete one or more properties from the SKLMConfig.properties file, which controls the IBM Security Guardium Key Lifecycle Manager server operations.
+Attributes:Accept-Language,propertyName
+RequiredAttributes:propertyName
+AttributeLocs:header,body
+Type:put
+Summary:To update one or more properties in the SKLMConfig.properties file that controls the IBM Security Guardium Key Lifecycle Manager server operations.
+Attributes:Accept-Language,KMIPListener.ssl.port
+RequiredAttributes:KMIPListener.ssl.port
+AttributeLocs:header,body
+--END--
+Path:/SKLM/rest/v1/configProperties/{propertyName}
+Type:get
+Summary:To retrieve a specific property from the SKLMConfig.properties configuration file.
+Attributes:Accept-Language,propertyName,type
+RequiredAttributes:propertyName
+AttributeLocs:header,path,query
+--END--
+Path:/SKLM/rest/v1/ckms/changePassword/db2/multimaster
+Type:put
+Summary:To change Db2 Password in Multi-Master cluster.
+Attributes:Accept-Language,newDb2Password
+RequiredAttributes:newDb2Password
+AttributeLocs:header,body
+--END--
+Path:/SKLM/rest/v1/ckms/changePassword/db2/standalone
+Type:put
+Summary:To change Db2 Password of standalone IBM Security Guardium Key Lifecycle Manager.
+Attributes:Accept-Language,newDb2Password
+RequiredAttributes:newDb2Password
+AttributeLocs:header,body
+--END--
+Path:/SKLM/rest/v1/ckms/counts
+Type:get
+Summary:To get the counts of various cryptographic objects or devices from the IBM Security Guardium Key Lifecycle Manager server.
+Attributes:Accept-Language,countType
+RequiredAttributes:
+AttributeLocs:header,query
+--END--
+Path:/SKLM/rest/v1/ckms/counts/{countType}
+Type:get
+Summary:To get count of single or multiple cryptographic objects.
+Attributes:Accept-Language,countType
+RequiredAttributes:countType
+AttributeLocs:header,path
+--END--
+Path:/SKLM/rest/v1/ckms/kerberos/configure
+Type:post
+Summary:Use Configure Kerberos Authentication REST Service to configure IBM Security Guardium Key Lifecycle Manager to use Kerberos as the authentication mechanism with the Db2 database.
+Attributes:Accept-Language,dbServiceName,userId,password,wasUserName,wasUserPassword
+RequiredAttributes:dbServiceName,userId,password,wasUserName,wasUserPassword
+AttributeLocs:header,body,body,body,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/kerberos/configureOnMM
+Type:post
+Summary:Use Configure Kerberos on Multi-Master Cluster REST Service to configure all the master servers of the cluster to use Kerberos authentication with the Db2 database.
+Attributes:Accept-Language,userId,password,wasUserName,wasUserPassword,ipHostName,dbServiceName
+RequiredAttributes:userId,password,wasUserName,wasUserPassword,ipHostName,dbServiceName
+AttributeLocs:header,body,body,body,body,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/kerberos/getConfiguration
+Type:get
+Summary:Use Get Kerberos Configuration REST Service to retrieve details of the Kerberos configuration on the server.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/kerberos/remove
+Type:post
+Summary:Use Remove Kerberos Configuration REST Service to delete the existing Kerberos configuration from the server.
+Attributes:Accept-Language,wasUserName,wasUserPassword
+RequiredAttributes:wasUserName,wasUserPassword
+AttributeLocs:header,body,body
+--END--
+Path:/SKLM/rest/v1/ckms/servermanagement/restartServer
+Type:post
+Summary:To restart Websphere server.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/ckms/versionInfo
+Type:get
+Summary:To obtain version information of installed IBM Security Guardium Key Lifecycle Manager and its components.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/keyServerStatus
+Type:get
+Summary:To obtain the status of the key server, an internal component of the IBM Security Guardium Key Lifecycle Manager server.
+Attributes:Accept-Language
+RequiredAttributes:
+AttributeLocs:header
+--END--
+Path:/SKLM/rest/v1/systemDetails
+Type:get
+Summary:To request IBM Security Guardium Key Lifecycle Manager server configuration details.
+Attributes:Accept-Language,systemDetailType
+RequiredAttributes:
+AttributeLocs:header,query
+--END--
+Path:/SKLM/rest/v1/trustStoreCertificates
+Type:get
+Summary:To list certificates that are present in the IBM Security Guardium Key Lifecycle Manager internal truststore.
+Attributes:Accept-Language,alias
+RequiredAttributes:
+AttributeLocs:header,query
+--END--
+Path:/SKLM/rest/v1/trustStoreCertificates/addCertToTrustStore
+Type:put
+Summary:To add a certificate to the IBM Security Guardium Key Lifecycle Manager truststore.
+Attributes:Accept-Language,certFile,certFormat,certAlias
+RequiredAttributes:certFile,certFormat,certAlias
+AttributeLocs:header,body,body,body
+--END--
+Path:/SKLM/rest/v1/trustStoreCertificates/deleteCertFromTrustStore
+Type:put
+Summary:To delete a certificate from the IBM Security Guardium Key Lifecycle Manager truststore.
+Attributes:Accept-Language,alias
+RequiredAttributes:alias
+AttributeLocs:header,body
+--END--
+Path:/SKLM/rest/v1/ckms/userpassword
+Type:put
+Summary:To change the Password of logged in User.
+Attributes:Accept-Language,currentUserPassword,newUserPassword,confirmNewUserPassword
+RequiredAttributes:currentUserPassword,newUserPassword,confirmNewUserPassword
+AttributeLocs:header,body,body,body
+--END--

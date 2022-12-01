@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration  status="ERROR">
+  <Appenders>
+    <File name="file" fileName="/tmp/sklmrestcli.out">
+      <PatternLayout>
+        <pattern>%d{dd MMM yyyy HH:mm:ss,SSS} [%c{1}] %p - %m%n</pattern>
+      </PatternLayout>
+    </File>
+  </Appenders>
+  <Loggers>
+     <Root level="DEBUG" additivity="false">
+        <AppenderRef ref="file" level="DEBUG"/>
+     </Root>
+  </Loggers>
+</Configuration>
